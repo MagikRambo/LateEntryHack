@@ -1,5 +1,5 @@
 'use strict';
 var jordan = "I figured out GitHub"
-var jacob = "Jacob installed github"
+var jacob = "Fuck Node js"
 console.log(jordan);
 console.log(jacob);
