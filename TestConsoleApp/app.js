@@ -1,3 +1,3 @@
 'use strict';
-
-console.log('Hello world');
+var jordan = "I figured out GitHub"
+console.log(jordan);
