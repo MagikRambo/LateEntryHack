@@ -1,0 +1,3 @@
+C:\Users\mikem\source\repos\LateEntryHack\TestProject\obj\Debug\TestProject.njsprojAssemblyReference.cache
+C:\Users\mikem\source\repos\LateEntryHack\TestProject\obj\Debug\TestProject.njsproj.CoreCompileInputs.cache
+C:\Users\mikem\source\repos\LateEntryHack\TestProject\bin\Microsoft.NodejsTools.WebRole.dll
