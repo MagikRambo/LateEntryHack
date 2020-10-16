@@ -1,0 +1,2 @@
+C:\Users\mikem\source\repos\LateEntryHack\TestConsoleApp\obj\Debug\TestConsoleApp.njsproj.CoreCompileInputs.cache
+C:\Users\mikem\source\repos\LateEntryHack\TestConsoleApp\bin\Microsoft.NodejsTools.WebRole.dll
