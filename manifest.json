@@ -1,0 +1,27 @@
+{
+    "name": "Our app",
+    "version": "1.0",
+    "manifest_version": 2,
+
+    "permissions":["background", "activeTab", "tabs"],
+
+    "options_page": "./Options.html",
+
+    "icons":
+    {
+        "16": "./WebApp16_16.jpg",
+        "32": "./WebApp32_32.jpg",
+        "48": "./WebApp48_48.jpg",
+        "128": "./WebApp128_128.jpg"
+    },
+
+    "background":
+    {
+        "scripts": ["./Background.js"]
+    },
+
+    "browser_action": 
+    {
+        "default_popup": "Popup.html"
+    }
+}
