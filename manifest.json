@@ -1,5 +1,6 @@
 {
     "name": "Our app",
+    "description": "my ext",
     "version": "1.0",
     "manifest_version": 2,
 
@@ -15,13 +16,15 @@
         "128": "./WebApp128_128.jpg"
     },
 
+
     "background":
     {
-        "scripts": ["./Background.js"]
+        "scripts": ["./BackgroundListener.js"]
     },
 
     "browser_action": 
     {
-        "default_popup": "Popup.html"
+        "default_popup": "Popup.html",
+        "default_title": "study"
     }
 }
