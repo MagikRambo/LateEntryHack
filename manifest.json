@@ -10,10 +10,10 @@
 
     "icons":
     {
-        "16": "./WebApp16_16.png",
-        "32": "./WebApp32_32.png",
-        "48": "./WebApp48_48.png",
-        "128": "./WebApp128_128.png"
+        "16": "./Ustudy16_16.png",
+        "32": "./Ustudy32_32.png",
+        "48": "./Ustudy48_48.png",
+        "128": "./Ustudy128_128.png"
     },
 
 
