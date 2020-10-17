@@ -5,84 +5,68 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-    
-    <!--<style>
-        .dropDownList{
-            display: inline-block;
-            position: relative;
-            color: black;
-        }
-        .dropDownList, .dropDownList ul{
-            border: 1px solid black;
-            background: whitesmoke;
-            padding:0.5ex  0.5ex 0;
-        }
-        .dropDownList ul {
-            position:absolute;
-            width: 100%;
-            list-style-type: none;
-            padding:0;
-            margin:0;
-            left:0;
-            height:0;
-            overflow:hidden;
-            border-color:transparent;
-            background-clip:padding-box;
-        }
-        .dropDownList:hover ul{
-            height:auto;
-            border-color:black;
-        }
-        .dropDownList li:nth-child(n+2){
-            border-top: solid silver;
-        }
-        .dropDownList input[type="checkbox"]{
-            float:left;
-        }
-        .dropDownList label{
-            display:block;
-        }
-    </style>-->
 </head>
 <body>
-    <!--<div class="dropDownList">
-        <ul>
-            <li>
-                <input type="checkbox" id="item1"><label for="item1">item 1</label>
-            </li>
-            <li>
-                <input type="checkbox" id="item2"><label for="item2">item 2</label>
-            </li>
-            <li>
-                <input type="checkbox" id="item3"><label for="item3">item 3</label>
-            </li>
-        </ul>
-    </div>-->
-
-
-
-    <div class="col-sm-14">
-        <ul class="list-group">
-            <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown">Whitelists</button>
-            <div class="dropdown-menu" id="whitelist">
-                <a class="dropdown-item">item 1</a>
-                <a class="dropdown-item">item 2</a>
-                <a class="dropdown-item">item 3</a>
-            </div>
-            <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown">Blacklists</button>
-            <div class="dropdown-menu" id="blacklist">
-                <a class="dropdown-item">item a</a>
-                <a class="dropdown-item">item b</a>
-                <a class="dropdown-item">item c</a>
-            </div>
-            <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown">Timer</button>
-            <div class="dropdown-menu" id="timer">
-                <a class="dropdown-item">item x</a>
-                <a class="dropdown-item">item y</a>
-                <a class="dropdown-item">item z</a>
-            </div>
-        </ul>
+    <div class="btn-group btn-group-vertical">
+        <button class="btn btn-danger w-100" data-toggle="collapse" data-target="#whitelistButtonGroup"><span style="color:whitesmoke">Whitelist</span></button><!--Maybe use data-toggle="colapse" instead-->
+        <div class="btn-group btn-group-vertical collapse" id="whitelistButtonGroup" aria-labelledby="btnGroupDrop1">
+            <a class="dropdown-item" href="#">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="listItem1">
+                    <label class="form-check-label" for="listItem1">
+                        CS
+                    </label>
+                </div>
+            </a>
+            <a class="dropdown-item" href="#">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="listItem2">
+                    <label class="form-check-label" for="listItem2">
+                        Math
+                    </label>
+                </div>
+            </a>
+            <a class="dropdown-item" href="#">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="listItem3">
+                    <label class="form-check-label" for="listItem3">
+                        Science
+                    </label>
+                </div>
+            </a>
+        </div>
+        <button class="btn btn-danger w-100" data-toggle="collapse" data-target="#blacklistButtonGroup"><span style="color:whitesmoke">Blacklist</span></button>
+        <div class="btn-group btn-group-vertical collapse" id="blacklistButtonGroup" aria-labelledby="btnGroupDrop1">
+            <a class="dropdown-item" href="#">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="listItem1">
+                    <label class="form-check-label" for="listItem1">
+                        CS
+                    </label>
+                </div>
+            </a>
+            <a class="dropdown-item" href="#">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="listItem2">
+                    <label class="form-check-label" for="listItem2">
+                        Math
+                    </label>
+                </div>
+            </a>
+            <a class="dropdown-item" href="#">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="listItem3">
+                    <label class="form-check-label" for="listItem3">
+                        Science
+                    </label>
+                </div>
+            </a>
+        </div>
+        <button class="btn btn-danger w-100" data-toggle="collapse" data-target="#timerButtonGroup"><span style="color:whitesmoke">Timer</span></button>
+        <div class="btn-group btn-group-vertical collapse" id="timerButtonGroup" aria-labelledby="btnGroupDrop1">
+            <a class="dropdown-item" href="#">Dropdown link</a>
+            <a class="dropdown-item" href="#">Dropdown link</a>
+        </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
