@@ -1,10 +1,17 @@
 /**
- * @author: Hyrum Saunders and Jacob Pehringer
+ * @author: Hyrum Saunders and Jacob Pehringer and Jordan Jimenez
  */
 
-// Globals
-savedWhiteLists = {}; //Holds users different white lists.
-savedBlackLists = {}; //Holds users different black lists.
+/**
+ * Run this functions before using any other ListsModel functions
+ * Sets assisted memory in chrome for Lists.
+ */
+function initializeLists()
+{
+    var obj = {};
+    localStorage.setItem("savedWhiteListsLocal", JSON.stringify({}));
+    localStorage.setItem("savedBlackListsLocal", JSON.stringify({}));
+}
 
 //######################## White List Functions ########################
 /**
@@ -13,9 +20,10 @@ savedBlackLists = {}; //Holds users different black lists.
  */
 function addWhiteList(listName)
 {
-    if(!savedWhiteLists.listName)
-        savedWhiteLists.push(listName, []);
-    //throw something
+    var savedWhiteLists = JSON.parse(localStorage.getItem("savedWhiteListsLocal"));
+    if(!(savedWhiteLists.hasOwnProperty(listName)))
+        savedWhiteLists[listName] = [];
+    localStorage.setItem("savedWhiteListsLocal", JSON.stringify(savedWhiteLists));
 }
 
 /**
@@ -24,9 +32,11 @@ function addWhiteList(listName)
  */
 function removeWhiteList(listName)
 {
-    if(savedWhiteLists.listName)
-        delete savedWhiteLists.listName;
+    var savedWhiteLists = JSON.parse(localStorage.getItem("savedWhiteListsLocal"));
+    if(savedWhiteLists.hasOwnProperty(listName))
+        delete savedWhiteLists[listName];
     //throw something
+    localStorage.setItem("savedWhiteListsLocal", JSON.stringify(savedWhiteLists));
 }
 
 /**
@@ -34,7 +44,8 @@ function removeWhiteList(listName)
  */
 function getWhiteListsNames()
 {
-    return savedWhiteLists.key();
+    var savedWhiteLists = JSON.parse(localStorage.getItem("savedWhiteListsLocal"));
+    return Object.keys(savedWhiteLists);
 }
 
 /**
@@ -42,9 +53,12 @@ function getWhiteListsNames()
  * @param: websiteUrl: URL to add.
  * @param: listName: name of list to add URL to
  */
-function addWhitelistURL(websiteURL, listName){
-    if (savedWhiteLists.listName)
-        savedWhiteLists.listName.push(websiteURL);
+function addWhitelistURL(websiteURL, listName)
+{
+    var savedWhiteLists = JSON.parse(localStorage.getItem("savedWhiteListsLocal"));
+    if (savedWhiteLists.hasOwnProperty(listName))
+        savedWhiteLists[listName].push(websiteURL);
+    localStorage.setItem("savedWhiteListsLocal", JSON.stringify(savedWhiteLists));
 }
 
 /**
@@ -52,9 +66,12 @@ function addWhitelistURL(websiteURL, listName){
  * @param: websiteUrl: URL to remove.
  * @param: listName: name of list to remove URL from.
  */
-function removeWhiteListURL(websiteURL, listName){
-    if (savedWhiteLists.listName)
-        savedWhiteLists.listName.pop(websiteURL);
+function removeWhiteListURL(websiteURL, listName)
+{
+    var savedWhiteLists = JSON.parse(localStorage.getItem("savedWhiteListsLocal"));
+    if (savedWhiteLists.hasOwnProperty(listName))
+        savedWhiteLists[listName].pop(websiteURL);
+    localStorage.setItem("savedWhiteListsLocal", JSON.stringify(savedWhiteLists));
 }
 
 /**
@@ -62,9 +79,17 @@ function removeWhiteListURL(websiteURL, listName){
  */
 function getWhiteListURLs(listName)
 {
-    return savedWhiteLists.listName;
+    var savedWhiteLists = JSON.parse(localStorage.getItem("savedWhiteListsLocal"));
+    return savedWhiteLists[listName];
 }
 //######################################################################
+
+
+
+
+
+
+
 
 //######################## black List functions ########################
 /**
@@ -73,9 +98,11 @@ function getWhiteListURLs(listName)
  */
 function addBlackList(listName)
 {
-    if(!savedBlackLists.listName)
-        savedBlackLists.push(listName, []);
+    var savedBlackLists = JSON.parse(localStorage.getItem("savedBlackListsLocal"));
+    if(!savedBlackLists.hasOwnProperty(listName))
+        savedBlackLists[listName] = [];
     //throw something
+    localStorage.setItem("savedBlackListsLocal", JSON.stringify(savedBlackLists));
 }
 
 /**
@@ -84,9 +111,11 @@ function addBlackList(listName)
  */
 function removeBlackList(listName)
 {
-    if(savedBlackLists.listName)
-        delete savedBlackLists.listName;
+    var savedBlackLists = JSON.parse(localStorage.getItem("savedBlackListsLocal"));
+    if(savedBlackLists.hasOwnProperty(listName))
+        delete savedBlackLists[listName];
     //throw something
+    localStorage.setItem("savedBlackListsLocal", JSON.stringify(savedBlackLists));
 }
 
 /**
@@ -94,7 +123,8 @@ function removeBlackList(listName)
  */
 function getBlackListsNames()
 {
-    return savedBlackLists.key();
+    var savedBlackLists = JSON.parse(localStorage.getItem("savedBlackListsLocal"));
+    return Object.keys(savedBlackLists);
 }
 
 /**
@@ -102,9 +132,12 @@ function getBlackListsNames()
  * @param: websiteUrl: URL to add.
  * @param: listName: name of list to add URL to
  */
-function addBlackListURL(websiteURL, listName){
-    if (savedBlackLists.listName)
-        savedBlackLists.listName.push(websiteURL);
+function addBlackListURL(websiteURL, listName)
+{
+    var savedBlackLists = JSON.parse(localStorage.getItem("savedBlackListsLocal"));
+    if (savedBlackLists.hasOwnProperty(listName))
+        savedBlackLists[listName].push(websiteURL);
+    localStorage.setItem("savedBlackListsLocal", JSON.stringify(savedBlackLists));
 }
 
 /**
@@ -112,9 +145,12 @@ function addBlackListURL(websiteURL, listName){
  * @param: websiteUrl: URL to remove.
  * @param: listName: name of list to remove URL from.
  */
-function removeBlackListURL(websiteURL, listName){
-    if (savedBlackLists.listName)
-        savedBlackLists.listName.pop(websiteURL);
+function removeBlackListURL(websiteURL, listName)
+{
+    var savedBlackLists = JSON.parse(localStorage.getItem("savedBlackListsLocal"));
+    if (savedBlackLists.hasOwnProperty(listName))
+        savedBlackLists[listName].pop(websiteURL);
+    localStorage.setItem("savedBlackListsLocal", JSON.stringify(savedBlackLists));
 }
 
 /**
@@ -122,6 +158,10 @@ function removeBlackListURL(websiteURL, listName){
  */
 function getBlackListURLs(listName)
 {
-    return savedBlackLists.listName;
+    var savedBlackLists = JSON.parse(localStorage.getItem("savedBlackListsLocal"));
+    return savedBlackLists[listName];
 }
 //######################################################################
+
+
+
