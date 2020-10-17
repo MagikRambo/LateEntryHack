@@ -3,14 +3,20 @@
  */
 
 //Constants
-const hourInMilli = 3600000;
-const minuteInMilli = 60000;
-const secondInMilli = 1000;
+hourInMilli = 3600000;
+minuteInMilli = 60000;
+secondInMilli = 1000;
 
-//Globals
-timeRemainingMilli;
-lastTimeMilli;
-isRunning = false;
+/**
+ * Run this functions before using any other TimerModel functions
+ * Sets assisted memory in chrome for timer.
+ */
+function initialize()
+{
+    chrome.storage.local.set( {"timeRemainingMilliLocal": 0} );
+    chrome.storage.local.set( {"lastTimeMilliLocal": 0} );
+    chrome.storage.local.set( {"isRunningLocal": false} );
+}
 
 /**
  * Set remaining time for timer.
@@ -21,6 +27,7 @@ isRunning = false;
 function setTimeRemaining(numOfHours, numOfMinutes, numOfSeconds)
 {
     timeRemainingMilli = (numOfHours * hourInMilli) + (numOfMinutes * minuteInMilli) + (numOfSeconds * secondInMilli);
+    chrome.storage.local.set( {"timeRemainingMilliLocal": timeRemainingMilli} );
 }
 
 /**
@@ -29,6 +36,7 @@ function setTimeRemaining(numOfHours, numOfMinutes, numOfSeconds)
 function getTimeRemainingSeconds()
 {
     //updateTimer()
+    chrome.storage.local.get( {"timeRemainingMilliLocal": timeRemainingMilli} );
     return (timeRemainingMilli % minutesInMilli) / secondsInMilli;
 }
 
@@ -38,6 +46,7 @@ function getTimeRemainingSeconds()
 function getTimeRemainingMinutes()
 {
     //updateTimer()
+    chrome.storage.local.get( {"timeRemainingMilliLocal": timeRemainingMilli} );
     return (timeRemainingMilli % hoursInMilli) / minutesInMilli;
 }
 
@@ -47,6 +56,7 @@ function getTimeRemainingMinutes()
 function getTimeRemainingHours()
 {
     //updateTimer()
+    chrome.storage.local.get( {"timeRemainingMilliLocal": timeRemainingMilli} );
     return timeRemainingMilli / hoursInMilli;
 }
 
@@ -57,10 +67,11 @@ function getTimeRemainingHours()
 function startTimer()
 {
     //Timer not running, Update lastTimeMilli before running.
+    chrome.storage.local.get( {"isRunningLocal": isRunning} );
     if(!isRunning)
-        lastTimeMilli = Date.getMilliseconds();
+        chrome.storage.local.set( {"lastTimeMilliLocal": Date.getMilliseconds()} );
     //Set timer state to running.
-    isRunning = true;
+    chrome.storage.local.set( {"isRunningLocal": true} );
 }
 
 /**
@@ -70,10 +81,11 @@ function startTimer()
 function stopTimer()
 {
     //Timer still running, update timer before pausing.
+    chrome.storage.local.get( {"isRunningLocal": isRunning} );
     if(isRunning)
         updateTimer()
     //Set timer state to paused.
-    isRunning = false;
+    chrome.storage.local.set( {"isRunningLocal": false} );
 }
 
 /**
@@ -84,9 +96,14 @@ function stopTimer()
 function updateTimer()
 {
     //Timer still running, update timeRemainingMilli.
+    chrome.storage.local.get( {"isRunningLocal": isRunning} );
     if(isRunning)
     {
+        chrome.storage.local.get( {"timeRemainingMilliLocal": timeRemainingMilli} );
         timeRemainingMilli -= (Date.getMilliseconds() - lastTimeMilli);
-        lastTimeMilli = Date.getMilliseconds();
+        chrome.storage.local.set( {"timeRemainingMilliLocal": timeRemainingMilli} );
+
+        chrome.storage.local.set( {"lastTimeMilliLocal": Date.getMilliseconds()} );
+
     }
 }
