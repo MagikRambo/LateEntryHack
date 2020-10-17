@@ -3,17 +3,19 @@
     "description": "my ext",
     "version": "1.0",
     "manifest_version": 2,
-
+    "content_security_policy": ["script-src 'self' 'unsafe-eval' https://stackpath.bootstrapcdn.com; object-src 'self'",
+        "script-src 'self' 'unsafe-eval' https://code.jquery.com; object-src 'self'",
+        "script-src 'self' 'unsafe-eval' https://cdnjs.cloudflare.com; object-src 'self'"],
     "permissions":["background", "activeTab", "tabs"],
 
     "options_page": "./Options.html",
 
     "icons":
     {
-        "16": "./WebApp16_16.jpg",
-        "32": "./WebApp32_32.jpg",
-        "48": "./WebApp48_48.jpg",
-        "128": "./WebApp128_128.jpg"
+        "16": "./WebApp16_16.png",
+        "32": "./WebApp32_32.png",
+        "48": "./WebApp48_48.png",
+        "128": "./WebApp128_128.png"
     },
 
 

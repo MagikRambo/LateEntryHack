@@ -3,63 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UStudy</title>
-    <style>
-        .multiselect{
-            width: 200px;
-        }
-        .selectBox{
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    
+    <!--<style>
+        .dropDownList{
+            display: inline-block;
             position: relative;
+            color: black;
         }
-        .selectBox select{
+        .dropDownList, .dropDownList ul{
+            border: 1px solid black;
+            background: whitesmoke;
+            padding:0.5ex  0.5ex 0;
+        }
+        .dropDownList ul {
+            position:absolute;
             width: 100%;
-            font-weight: bold;
+            list-style-type: none;
+            padding:0;
+            margin:0;
+            left:0;
+            height:0;
+            overflow:hidden;
+            border-color:transparent;
+            background-clip:padding-box;
         }
-        .overSelect{
-            position: absolute;
-            left: 0; right: 0; top: 0; bottom: 0;
+        .dropDownList:hover ul{
+            height:auto;
+            border-color:black;
         }
-        #checkboxes{
-            display: none;
-            border: 1px #dadada solid;
+        .dropDownList li:nth-child(n+2){
+            border-top: solid silver;
         }
-        #checkboxes label{
-            display: block;
+        .dropDownList input[type="checkbox"]{
+            float:left;
         }
-        #checkboxes label:hover{
-            background-color: #1e90ff;
+        .dropDownList label{
+            display:block;
         }
-    </style>
+    </style>-->
 </head>
 <body>
-    <form>
-    <div class = "multiselect"> 
-        <div class = "selectBox" onclick="showCheckboxes()">
-            <select>
-                <option>Select an option</option>
-            </select>
-            <div class = "overSelect"></div>
-        </div>
-        <div id="checkboxes">
-            <label for="one"><input type="checkbox" id="one"/>First checkbox</label>
-            <label for="two"><input type="checkbox" id="two"/>Second checkbox</label>
-            <label for="three"><input type="checkbox" id="three"/>Third checkbox</label>
-        </div>
+    <!--<div class="dropDownList">
+        <ul>
+            <li>
+                <input type="checkbox" id="item1"><label for="item1">item 1</label>
+            </li>
+            <li>
+                <input type="checkbox" id="item2"><label for="item2">item 2</label>
+            </li>
+            <li>
+                <input type="checkbox" id="item3"><label for="item3">item 3</label>
+            </li>
+        </ul>
+    </div>-->
+
+
+
+    <div class="col-sm-14">
+        <ul class="list-group">
+            <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown">Whitelists</button>
+            <div class="dropdown-menu" id="whitelist">
+                <a class="dropdown-item">item 1</a>
+                <a class="dropdown-item">item 2</a>
+                <a class="dropdown-item">item 3</a>
+            </div>
+            <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown">Blacklists</button>
+            <div class="dropdown-item" id="blacklist">
+                <li>item 1</li>
+                <li>item 2</li>
+                <li>item 3</li>
+            </div>
+            <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown">Timer</button>
+            <div class="dropdown-item" id="timer">
+                <li>item 1</li>
+                <li>item 2</li>
+                <li>item 3</li>
+            </div>
+        </ul>
     </div>
-    </form>
-    <script>
-        var expanded = false;
-        function showCheckboxes(){
-            var checkboxes = document.getElementbyId("checkboxes");
-            if(!expanded){
-                checkboxes.style.display = "block";
-                expanded = true;
-            }
-            else{
-                checkboxes.style.display = "none";
-                expanded = false;
-            }
-        }
-    </script>
+
 </body>
-</html> 
+</html>

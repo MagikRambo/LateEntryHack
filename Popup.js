@@ -1,14 +1,17 @@
 //add some functionality as event listeners
 
-//Tried adding an event listener for when the button is clicked it would display "hi"
-// document.addEventListener('DOMContentLoaded', function(){
-//     document.querySelector('button').addEventListener('click',
-//     onclick, false)
-
-// function onClick(){
-// chrome.tabs.query({currentWindow: true, active: true}, 
-//     function(tabs) {
-//         chrome.tabs.sendMessage(tabs[0].id, 'hi')
-//     })
-// }
-// }, false)
+var collapsible = document.getElementsByClassName("whitelist");
+function hideDropdown(){
+    for(i = 0; i < collapsible.length; i++){
+        collapsible[i].addEventListener('click', function() {
+            this.classList.toggle('active');
+            var content = this.nextElementSibling;
+            if (content.style.display === 'block') {
+                content.style.display = 'none';
+            }
+            else{
+                content.style.display = 'block';
+            }
+        });
+    }
+}
