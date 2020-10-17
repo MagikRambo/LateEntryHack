@@ -1,6 +1,6 @@
 {
-    "name": "Our app",
-    "description": "my ext",
+    "name": "Ustudy App",
+    "description": "An extension built to help you focus on studying by whitelisting and blacklisting sites for a period of time using the Timer",
     "version": "1.0",
     "manifest_version": 2,
     "content_security_policy": "script-src 'self' 'unsafe-eval' https://stackpath.bootstrapcdn.com https://code.jquery.com https://cdnjs.cloudflare.com; object-src 'self'",
