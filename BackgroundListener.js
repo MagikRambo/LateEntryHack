@@ -18,3 +18,12 @@ function UrlListener(tabId, changeInfo, tab)
     else if(isBlackListedURL(changeInfo.url))
         chrome.tabs.update(tabId, {url: "BlockedSite.html"});
 }
+
+//fill in black lists.
+var blackListsNames = getBlackListsNames();
+for(var currentIndex = 0; currentIndex < blackListsNames.length(); currentIndex++)
+    submitFormHandler(blackListsNames[currentIndex], 'dynamic-blacklist');
+
+var whiteListsNames = getWhiteListsNames();
+for(var currentIndex = 0; currentIndex < getWhiteListsNames.length(); currentIndex++)
+    submitFormHandler(whiteListsNames[currentIndex], 'dynamic-whitelist');
