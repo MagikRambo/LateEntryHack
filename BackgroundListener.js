@@ -13,7 +13,7 @@ function UrlListener(tabId, changeInfo, tab)
 {
     console.log(changeInfo.url)
     
-    if(isWhiteListedURL(changeInfo.url))
+    if(!isWhiteListedURL(changeInfo.url))
         chrome.tabs.update(tabId, {url: "BlockedSite.html"});  
     else if(isBlackListedURL(changeInfo.url))
         chrome.tabs.update(tabId, {url: "BlockedSite.html"});

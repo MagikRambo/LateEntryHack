@@ -9,26 +9,21 @@ clicked = false;
 
 document.getElementById('whitelistButton').addEventListener('click', function()
 {
-    if(document.querySelectorAll('div.btn-group-horizontal').length == 0)
-    {
-        var whiteListsNames = getWhiteListsNames();
+    alert("triggered");
+    var whiteListsNames = getWhiteListsNames();
         for(var i = 0; i < whiteListsNames.length; i++)
         {
             submitFormHandler(whiteListsNames[i], 'dynamic-whitelist');
         }
-    }
 });
 
 document.getElementById('blacklistButton').addEventListener('click', function()
 {
-    if(document.querySelectorAll('div.btn-group-horizontal').length == 0)
-    {
-        var blackListsNames = getBlackListsNames();
+    var blackListsNames = getBlackListsNames();
         for(var i = 0; i < blackListsNames.length; i++)
         {
             submitFormHandler(blackListsNames[i], 'dynamic-blacklist');
         }
-    }
 });
 
 const formElem = document.getElementById('whitelistForm');
@@ -71,6 +66,12 @@ function submitSubFormHandler(){
 
 function submitFormHandler(candidate, list)
 {
+    // Create new list
+    if(list == 'dynamic-whitelist')
+        addWhiteList(candidate);
+    
+    else
+        addBlackList(candidate);
     // Create all necessary elements
     var outermostDiv = document.createElement('div');
     var outDivBt1 = document.createElement('button');
