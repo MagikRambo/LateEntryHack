@@ -1,3 +1,7 @@
+/**
+ * @author Jordan Jimenez
+ */
+
 document.write('<script src="TimerModel.js" ></script>')
 
 // Grab Submit and GetTime Buttons
