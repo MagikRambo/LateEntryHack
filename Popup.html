@@ -35,10 +35,23 @@
         </div>
         <button class="btn btn-danger w-100" data-toggle="collapse" data-target="#timerButtonGroup"><span style="color:whitesmoke">Timer</span></button>
         <div class="btn-group btn-group-vertical collapse" id="timerButtonGroup" aria-labelledby="btnGroupDrop1">
-            <a class="dropdown-item" href="#">Dropdown link</a>
-            <a class="dropdown-item" href="#">Dropdown link</a>
+            <p style="text-align: center;">minutes only</p>
+            <input type="text" id="countdown" value="#min" maxlength="8" class="form-control" name="timer">
+            <button type="submit" id="timerButton" class="btn btn-danger" name="submitButton">Submit</button>
+        </div>
+        <button class="btn btn-danger w-100" data-toggle="collapse" data-target="#AuthorTagButtonGroup"><span style="color:whitesmoke">AuthorTag</span></button>
+        <div class="btn-group btn-group-vertical collapse" id="AuthorTagButtonGroup" aria-labelledby="btnGroupDrop1">
+            <a class="dropdown-item" href="#">
+                <div style="text-align: center;">
+                <p>This Chrome Extension was made by the following people</p>
+                <a id="names" href="https://www.linkedin.com/in/hyrum-saunders-a246561b0/" target="_blank">Hyrum</a> <br>
+                <a id="names" href="https://www.linkedin.com/in/jacob-pehringer-326570109/" target="_blank">Jacob</a><br>
+                <a id="names" href="https://www.linkedin.com/in/jordan-jimenez-0447611b9/"target="_blank">Jordan</a><br>
+                <a id="names" href="https://www.linkedin.com/in/mike-marambio/" target="_blank">Mike</a>
+                </div>
         </div>
     </div>
+    <script src="testTimer.js"></script>
     <script src="Popup.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
