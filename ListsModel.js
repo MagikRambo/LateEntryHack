@@ -107,6 +107,7 @@ function getWhiteListURLs(listName)
  */
 function containsBlackList(listName)
 {
+    var savedBlackLists = JSON.parse(localStorage.getItem("savedBlackListsLocal"));
     if(savedBlackLists.hasOwnProperty(listName))
         return true;
     return false;
