@@ -1,29 +1,48 @@
 
+document.write('<script src="TimerModel.js" ></script>')
 
-document.getElementById('timerButton').addEventListener('click', timeButtonClick);
+document.getElementById('timerButton').addEventListener('click', updateTimer);
 
-var startingMinutes;
-var time;
-var countdownEl;
+//var startingMinutes;
+//var time;
+//var countdownEl;
+
+var hours;
+var minutes;
+var seconds;
+var input;
+var interval;
 
 function timeButtonClick()
 {
-     startingMinutes = document.getElementById('countdown').value ; // change this to time inputted
-     time = startingMinutes * 60;
-     countdownEl = document.getElementById('countdown');
-    
-setInterval(updateCountdown, 1000);
-
+     //startingMinutes = document.getElementById('countdown').value ; // change this to time inputted
+     //time = startingMinutes * 60;
+     if(getTimeRemainingHours() == 0 && getTimeRemainingMinutes() == 0 && getTimeRemainingSeconds() == 0)
+        clearInterval(interval);
+     countdownEl.value =  getTimeRemainingHours() + " :" + getTimeRemainingMinutes() + " :" + getTimeRemainingSeconds();
+     
 }
 
-
-function updateCountdown()
+// function getTimeRemainingHours(){    updateTimer();    var timeRemainingMilli = JSON.parse(localStorage.getItem("timeRemainingMilliLocal"));    return Math.floor(timeRemainingMilli / hourInMilli);}:function getTimeRemainingMinutes(){    updateTimer();    var timeRemainingMilli = JSON.parse(localStorage.getItem("timeRemainingMilliLocal"));    return Math.floor((timeRemainingMilli % hourInMilli) / minuteInMilli);}:function getTimeRemainingSeconds(){    updateTimer();    var timeRemainingMilli = JSON.parse(localStorage.getItem("timeRemainingMilliLocal"));    return Math.floor((timeRemainingMilli % minuteInMilli) / secondInMilli);}
+function updateTimer()
 {
-    const minutes = Math.floor(time/60);
-    let seconds = time % 60;
+    console.log("hello");
+    input = document.getElementById('countdown').value;
+     countdownEl = document.getElementById('countdown');
+     input = input.split(":");
+     hours = input[0];
+     minutes = input[1];
+     seconds = input[2];
+     
+    // Initialize timer
+    initializeTimer();
 
-    seconds = seconds < 10 ? '0' + seconds: seconds;
+     // Set Time Remaining
+     setTimeRemaining(hours, minutes, seconds);
 
-    countdownEl.value = `${minutes}:${seconds}`;
-    time--;
+     // Start timer
+     startTimer();
+     
+    interval = setInterval(timeButtonClick, 50);
+    
 }
