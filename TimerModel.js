@@ -11,11 +11,11 @@ secondInMilli = 1000;
  * Run this functions before using any other TimerModel functions
  * Sets assisted memory in chrome for timer.
  */
-function initialize()
+function initializeTimer()
 {
-    chrome.storage.local.set( {"timeRemainingMilliLocal": 0} );
-    chrome.storage.local.set( {"lastTimeMilliLocal": 0} );
-    chrome.storage.local.set( {"isRunningLocal": false} );
+    localStorage.setItem("timeRemainingMilliLocal", JSON.stringify(0));
+    localStorage.setItem("lastTimeMilliLocal", JSON.stringify(0));
+    localStorage.setItem("isRunningLocal", JSON.stringify(false));
 }
 
 /**
@@ -26,8 +26,8 @@ function initialize()
  */
 function setTimeRemaining(numOfHours, numOfMinutes, numOfSeconds)
 {
-    timeRemainingMilli = (numOfHours * hourInMilli) + (numOfMinutes * minuteInMilli) + (numOfSeconds * secondInMilli);
-    chrome.storage.local.set( {"timeRemainingMilliLocal": timeRemainingMilli} );
+    var timeRemainingMilli = (numOfHours * hourInMilli) + (numOfMinutes * minuteInMilli) + (numOfSeconds * secondInMilli);
+    localStorage.setItem("timeRemainingMilliLocal", JSON.stringify(timeRemainingMilli));
 }
 
 /**
@@ -35,9 +35,9 @@ function setTimeRemaining(numOfHours, numOfMinutes, numOfSeconds)
  */
 function getTimeRemainingSeconds()
 {
-    //updateTimer()
-    chrome.storage.local.get( {"timeRemainingMilliLocal": timeRemainingMilli} );
-    return (timeRemainingMilli % minutesInMilli) / secondsInMilli;
+    updateTimer();
+    var timeRemainingMilli = JSON.parse(localStorage.getItem("timeRemainingMilliLocal"));
+    return Math.floor((timeRemainingMilli % minuteInMilli) / secondInMilli);
 }
 
 /**
@@ -45,9 +45,9 @@ function getTimeRemainingSeconds()
  */
 function getTimeRemainingMinutes()
 {
-    //updateTimer()
-    chrome.storage.local.get( {"timeRemainingMilliLocal": timeRemainingMilli} );
-    return (timeRemainingMilli % hoursInMilli) / minutesInMilli;
+    updateTimer();
+    var timeRemainingMilli = JSON.parse(localStorage.getItem("timeRemainingMilliLocal"));
+    return Math.floor((timeRemainingMilli % hourInMilli) / minuteInMilli);
 }
 
 /**
@@ -55,9 +55,9 @@ function getTimeRemainingMinutes()
  */
 function getTimeRemainingHours()
 {
-    //updateTimer()
-    chrome.storage.local.get( {"timeRemainingMilliLocal": timeRemainingMilli} );
-    return timeRemainingMilli / hoursInMilli;
+    updateTimer();
+    var timeRemainingMilli = JSON.parse(localStorage.getItem("timeRemainingMilliLocal"));
+    return Math.floor(timeRemainingMilli / hourInMilli);
 }
 
 /**
@@ -66,12 +66,14 @@ function getTimeRemainingHours()
  */
 function startTimer()
 {
+    //JSON.stringify(obj)
     //Timer not running, Update lastTimeMilli before running.
-    chrome.storage.local.get( {"isRunningLocal": isRunning} );
+    var isRunning = JSON.parse(localStorage.getItem("isRunningLocal"));
+    var currentTimeMilli = new Date().getTime();
     if(!isRunning)
-        chrome.storage.local.set( {"lastTimeMilliLocal": Date.getMilliseconds()} );
+        localStorage.setItem("lastTimeMilliLocal", JSON.stringify(currentTimeMilli));
     //Set timer state to running.
-    chrome.storage.local.set( {"isRunningLocal": true} );
+    localStorage.setItem("isRunningLocal", JSON.stringify(true));
 }
 
 /**
@@ -81,11 +83,11 @@ function startTimer()
 function stopTimer()
 {
     //Timer still running, update timer before pausing.
-    chrome.storage.local.get( {"isRunningLocal": isRunning} );
+    var isRunning = JSON.parse(localStorage.getItem("isRunningLocal"));
     if(isRunning)
-        updateTimer()
+        updateTimer();
     //Set timer state to paused.
-    chrome.storage.local.set( {"isRunningLocal": false} );
+    localStorage.setItem("isRunningLocal", JSON.stringify(false));
 }
 
 /**
@@ -96,14 +98,26 @@ function stopTimer()
 function updateTimer()
 {
     //Timer still running, update timeRemainingMilli.
-    chrome.storage.local.get( {"isRunningLocal": isRunning} );
+    var isRunning = JSON.parse(localStorage.getItem("isRunningLocal"));
     if(isRunning)
     {
-        chrome.storage.local.get( {"timeRemainingMilliLocal": timeRemainingMilli} );
-        timeRemainingMilli -= (Date.getMilliseconds() - lastTimeMilli);
-        chrome.storage.local.set( {"timeRemainingMilliLocal": timeRemainingMilli} );
-
-        chrome.storage.local.set( {"lastTimeMilliLocal": Date.getMilliseconds()} );
-
+        var timeRemainingMilli = JSON.parse(localStorage.getItem("timeRemainingMilliLocal"));
+        var lastTimeMilli = JSON.parse(localStorage.getItem("lastTimeMilliLocal"));
+        var currentTimeMilli = new Date().getTime();
+        //console.log(milliTime.getTime())
+        //console.log("-");
+        //console.log(lastTimeMilli);
+        timeRemainingMilli -= (currentTimeMilli - lastTimeMilli);
+        //console.log(timeRemainingMilli);
+        if(timeRemainingMilli <= 0)
+            timeRemainingMilli = 1; //prevent div by zero error.
+        localStorage.setItem("timeRemainingMilliLocal", JSON.stringify(timeRemainingMilli));
+        localStorage.setItem("lastTimeMilliLocal", JSON.stringify(currentTimeMilli));
     }
+}
+
+
+function consoleTimerResults()
+{
+    console.log(getTimeRemainingHours() + ":" + getTimeRemainingMinutes() + ":" + getTimeRemainingSeconds());
 }

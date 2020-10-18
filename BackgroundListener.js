@@ -5,6 +5,7 @@
 var currentList;
 
 document.write('<script src="ListsModel.js" ></script>');
+document.write('<script src="TimerModel.js" ></script>');
 
 chrome.tabs.onUpdated.addListener(UrlListener)
 
