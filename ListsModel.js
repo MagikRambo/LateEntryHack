@@ -1,5 +1,7 @@
 /**
- * @author: Hyrum Saunders and Jacob Pehringer and Jordan Jimenez
+ * @author: Jacob Pehringer
+ * @author: Jordan Jimenez
+ * @author: Hyrum Saunders
  */
 
 /**
@@ -8,12 +10,20 @@
  */
 function initializeLists()
 {
-    var obj = {};
     localStorage.setItem("savedWhiteListsLocal", JSON.stringify({}));
     localStorage.setItem("savedBlackListsLocal", JSON.stringify({}));
 }
 
 //######################## White List Functions ########################
+
+function containsWhiteList(listName)
+{
+    var savedWhiteLists = JSON.parse(localStorage.getItem("savedWhiteListsLocal"));
+    if(savedWhiteLists.hasOwnProperty(listName))
+        return true;
+    return false;
+}
+
 /**
  * Adds new WhiteList with specified listName to savedWhiteLists
  * @param: listName: name of the list to added.
@@ -53,7 +63,7 @@ function getWhiteListsNames()
  * @param: websiteUrl: URL to add.
  * @param: listName: name of list to add URL to
  */
-function addWhitelistURL(websiteURL, listName)
+function addWhiteListURL(websiteURL, listName) //list -> List
 {
     var savedWhiteLists = JSON.parse(localStorage.getItem("savedWhiteListsLocal"));
     if (savedWhiteLists.hasOwnProperty(listName))
@@ -92,6 +102,19 @@ function getWhiteListURLs(listName)
 
 
 //######################## black List functions ########################
+
+/**
+ * 
+ * @param listName 
+ */
+function containsBlackList(listName)
+{
+    var savedBlackLists = JSON.parse(localStorage.getItem("savedBlackListsLocal"));
+    if(savedBlackLists.hasOwnProperty(listName))
+        return true;
+    return false;
+}
+
 /**
  * Adds new BlackList with specified listName to savedBlackLists
  * @param: listName: The name of the list to added.
