@@ -1,15 +1,35 @@
 /**
  * @author Hyrum Saunders
  */
+document.write('<script src="ListsModel.js" ></script>')
+
 window.onload = function() {document.getElementById('whitelistSubmit').style.display='none' ; document.getElementById('blacklistSubmit').style.display='none'};
 
 clicked = false;
 
-// document.getElementById('whitelistButton').addEventListener('click', function() {
-//     for (var name of getWhiteListsNames()) {
-//         alert(name);
-//     }
-// })
+document.getElementById('whitelistButton').addEventListener('click', function()
+{
+    if(document.querySelectorAll('div.btn-group-horizontal').length == 0)
+    {
+        var whiteListsNames = getWhiteListsNames();
+        for(var i = 0; i < whiteListsNames.length; i++)
+        {
+            submitFormHandler(whiteListsNames[i], 'dynamic-whitelist');
+        }
+    }
+});
+
+document.getElementById('blacklistButton').addEventListener('click', function()
+{
+    if(document.querySelectorAll('div.btn-group-horizontal').length == 0)
+    {
+        var blackListsNames = getBlackListsNames();
+        for(var i = 0; i < blackListsNames.length; i++)
+        {
+            submitFormHandler(blackListsNames[i], 'dynamic-blacklist');
+        }
+    }
+});
 
 const formElem = document.querySelector('form');
 formElem.addEventListener('submit', (e) => {
@@ -29,9 +49,12 @@ submitFormHandler(candidate, 'dynamic-blacklist');
 formElemBlacklist.elements.blacklistAdd.value = "";
 });
 
+document.querySelectorAll('div.btn').length
+
 function submitFormHandler(candidate, list)
 {
-    // Elements for main list
+    // Create all necessary elements
+    var outermostDiv = document.createElement('div');
     var dv = document.createElement('div');
     var bt1 = document.createElement('button');
     var bt2 = document.createElement('button');
