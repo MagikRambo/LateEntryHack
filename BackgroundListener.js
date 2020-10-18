@@ -3,6 +3,7 @@
  */
 
 document.write('<script src="SelectedListsModel.js" ></script>')
+document.write('<script src="TimerModel.js" ></script>')
 
 
 chrome.tabs.onUpdated.addListener(UrlListener);
@@ -11,15 +12,9 @@ chrome.tabs.onUpdated.addListener(UrlListener);
 function UrlListener(tabId, changeInfo, tab)
 {
     console.log(changeInfo.url)
-    // Shorten the URL for readability
-    var newURL = shortenURL(changeInfo.url)
+    
     if(isWhiteListedURL(changeInfo.url))
-    {
-        window.open("BlockedSite.html");
-        window.alert("You should not be here.")
-
-    }
-        
+        chrome.tabs.update(tabId, {url: "BlockedSite.html"});  
     else if(isBlackListedURL(changeInfo.url))
-        window.alert("You should not be here.")
+        chrome.tabs.update(tabId, {url: "BlockedSite.html"});
 }

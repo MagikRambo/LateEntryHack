@@ -41,7 +41,7 @@ function addSelectedWhiteList(listName)
 function removeSelectedWhiteList(listName)
 {
     var savedSelectedWhiteLists = JSON.parse(localStorage.getItem("savedSelectedWhiteListsLocal"));
-    if(savedSelectedWhiteLists.hasOwnProperty(listName) && containsWhiteList(listName))
+    if(savedSelectedWhiteLists.hasOwnProperty(listName)) //&& containsWhiteList(listName))
     {
         savedSelectedWhiteLists.pop(listName);
     }
@@ -65,13 +65,13 @@ function isWhiteListedURL(URLName)
     return false;
 }
 
-function getSelectedWhiteListeds()
+/**
+ * Returns a list of the currently savedSelectedWhiteLists.
+ */
+function getSelectedWhiteLists()
 {
     return JSON.parse(localStorage.getItem("savedSelectedWhiteListsLocal"));
 }
-
-
-
 //######################################################################
 
 
@@ -109,7 +109,7 @@ function addSelectedBlackList(listName)
 function removeSelectedBlackList(listName)
 {
     var savedSelectedBlackLists = JSON.parse(localStorage.getItem("savedSelectedBlackListsLocal"));
-    if(savedSelectedBlackLists.hasOwnProperty(listName) && containsBlackList(listName))
+    if(savedSelectedBlackLists.hasOwnProperty(listName)) //&& containsBlackList(listName))
     {
         savedSelectedBlackLists.pop(listName);
     }
@@ -133,7 +133,11 @@ function isBlackListedURL(URLName)
     return false;
 }
 
-function getSelectedBlackListeds()
+
+/**
+ * Returns a list of the currently savedSelectedBlackLists.
+ */
+function getSelectedBlackLists()
 {
     return JSON.parse(localStorage.getItem("savedSelectedBlackListsLocal"));
 }
