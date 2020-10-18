@@ -29,9 +29,12 @@ submitFormHandler(candidate, 'dynamic-blacklist');
 formElemBlacklist.elements.blacklistAdd.value = "";
 });
 
+document.querySelectorAll('div.btn').length
+
 function submitFormHandler(candidate, list)
 {
-    // Elements for main list
+    // Create all necessary elements
+    var outermostDiv = document.createElement('div');
     var dv = document.createElement('div');
     var bt1 = document.createElement('button');
     var bt2 = document.createElement('button');
