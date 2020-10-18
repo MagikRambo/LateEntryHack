@@ -9,7 +9,6 @@ clicked = false;
 
 document.getElementById('whitelistButton').addEventListener('click', function()
 {
-    alert("triggered");
     var whiteListsNames = getWhiteListsNames();
         for(var i = 0; i < whiteListsNames.length; i++)
         {
