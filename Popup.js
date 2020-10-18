@@ -31,7 +31,7 @@ document.getElementById('blacklistButton').addEventListener('click', function()
     }
 });
 
-const formElem = document.querySelector('form');
+const formElem = document.getElementById('whitelistForm');
 formElem.addEventListener('submit', (e) => {
 // on form submission, prevent default
 e.preventDefault();
@@ -51,51 +51,76 @@ formElemBlacklist.elements.blacklistAdd.value = "";
 
 document.querySelectorAll('div.btn').length
 
+function submitSubFormHandler(){
+
+    // Create elements
+    var outermostDiv = document.createElement('div');
+    var innermostDiv = document.createElement('div');
+    var bt1 = document.createElement('button');
+    var bt2 = document.createElement('button');
+
+    // Setup attributes
+    outermostDiv.setAttribute('class', 'card-body');
+    outermostDiv.setAttribute('style', 'width:100%');
+    innermostDiv.setAttribute('class', 'btn-group btn-group-horizontal');
+    innermostDiv.setAttribute('style', 'width:100%');
+    bt1.setAttribute('class', 'btn');
+    bt1.setAttribute('style', 'width:100%');
+
+}
+
 function submitFormHandler(candidate, list)
 {
     // Create all necessary elements
     var outermostDiv = document.createElement('div');
-    var dv = document.createElement('div');
-    var bt1 = document.createElement('button');
-    var bt2 = document.createElement('button');
-    var sp = document.createElement('span');
-
-    // Elements for sub list
-    var subListForm = document.createElement('form');
+    var outDivBt1 = document.createElement('button');
+    var outDivBt2 = document.createElement('button');
+    var bt2Span = document.createElement('span')
+    var divCard = document.createElement('div');
+    var divBtnGroupVertical = document.createElement('div');
+    var formTag = document.createElement('form');
     var divFormGroup = document.createElement('div');
-    var divMenu = document.createElement('div');
-    var formInput = document.createElement('input');
-    var formSubmitButton = document.createElement('button');
+    var inputTag = document.createElement('div');
 
-    // Set attributes and values for main list
-    dv.setAttribute('id', candidate);
-    dv.setAttribute('class', 'btn-group btn-group-horizontal dropleft');
-    bt1.setAttribute('class', 'btn dropdown-toggle');
-    bt1.setAttribute('data-toggle', 'dropdown');
-    bt1.setAttribute('style', 'width:100px');
-    bt1.textContent = candidate;
-    bt2.setAttribute('class', 'btn close');
-    bt2.setAttribute('aria-label', 'Close');
-    bt2.addEventListener("click", function() {
-        this.parentElement.style.display = 'none';
-    });
-    sp.setAttribute('aria-hidden', 'true');
-    sp.innerHTML = "&times;";
-
-    // Set attributes and values for sub list
+    // Setup attributes
+    outermostDiv.setAttribute('id', candidate);
+    outermostDiv.setAttribute('class', 'btn-group btn-group-horizontal');
+    outermostDiv.setAttribute('style', 'width:100%');
+    outDivBt1.setAttribute('class', 'btn');
+    outDivBt1.setAttribute('data-toggle', 'collapse');
+    outDivBt1.setAttribute('data-target', '#subListButtonGroup' + candidate);
+    outDivBt1.setAttribute('style', 'width:100%');
+    outDivBt1.textContent = candidate;
+    outDivBt2.setAttribute('class', 'btn close');
+    outDivBt2.setAttribute('aria-label', 'Close');
+    bt2Span.setAttribute('aria-hidden', 'true');
+    bt2Span.innerHTML = '&times;';
+    divCard.setAttribute('class', 'card');
+    divCard.setAttribute('style', 'width:100%');
+    divBtnGroupVertical.setAttribute('class', 'btn-group btn-group-vertical collapse');
+    divBtnGroupVertical.setAttribute('id', 'subListButtonGroup' + candidate);
+    divBtnGroupVertical.setAttribute('style', 'width:100%');
     divFormGroup.setAttribute('class', 'form-group');
-    formInput.setAttribute('class', 'form-control');
-    formInput.setAttribute('name', 'subList');
-    formSubmitButton.setAttribute('name', 'submitButton');
-    divMenu.setAttribute('class', 'dropdown-menu');
-    divMenu.setAttribute('id', 'divMenu');
-    bt1.setAttribute('data-target', 'divMenu');
+    divFormGroup.setAttribute('style', 'width:100%');
+    inputTag.setAttribute('type', 'text');
+    inputTag.setAttribute('class', 'form-control');
+    inputTag.setAttribute('style', 'width:100%');
+    inputTag.setAttribute('name', 'sublistAdd');
+    inputTag.setAttribute('id', 'sublistAdd');
 
-    // Set up hierarchy for main list
-    bt2.appendChild(sp);
-    dv.appendChild(bt1);
-    dv.appendChild(bt2);
-    bt1.addEventListener('click', function() {
+    // Setup hierarchy
+    divFormGroup.appendChild(inputTag);
+    formTag.appendChild(divFormGroup);
+    divBtnGroupVertical.appendChild(formTag);
+    divCard.appendChild(divBtnGroupVertical);
+    outDivBt2.appendChild(bt2Span);
+    outermostDiv.appendChild(outDivBt1);
+    outermostDiv.appendChild(outDivBt2);
+    var ul = document.getElementById(list);
+    ul.appendChild(outermostDiv);
+
+    // Setup listeners
+    outDivBt1.addEventListener('click', function() {
         if (clicked){
             this.style.backgroundColor="white";
             clicked=false;
@@ -106,12 +131,12 @@ function submitFormHandler(candidate, list)
         }
         
     });
-    var ul = document.getElementById(list);
-    ul.appendChild(dv);
 
-    // Set up hierarchy for sub list
-    subListForm.appendChild(divFormGroup);
-    divFormGroup.appendChild(formInput);
-    subListForm.appendChild(formSubmitButton);
-    
+    outDivBt2.addEventListener("click", function() {
+        if (list == "dynamic-whitelist")
+            removeWhiteList(candidate);
+        else
+            removeBlackList(candidate);
+        this.parentElement.style.display = 'none';
+    });
 }
