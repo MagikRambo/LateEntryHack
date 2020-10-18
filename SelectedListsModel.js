@@ -59,11 +59,19 @@ function isWhiteListedURL(URLName)
     {
         var currentListURLs = getWhiteListURLs(savedSelectedWhiteLists[currentList]);
         for(var currentURL = 0; currentURL < currentListURLs.length; currentURL++)
-            if(currentListURLs[currentURL] == URLName)
+            if(URLName.includes(currentListURLs[currentURL]))
                 return true;
     }
     return false;
 }
+
+function getSelectedWhiteListeds()
+{
+    return JSON.parse(localStorage.getItem("savedSelectedWhiteListsLocal"));
+}
+
+
+
 //######################################################################
 
 
@@ -119,9 +127,14 @@ function isBlackListedURL(URLName)
     {
         var currentListURLs = getBlackListURLs(savedSelectedBlackLists[currentList]);
         for(var currentURL = 0; currentURL < currentListURLs.length; currentURL++)
-            if(currentListURLs[currentURL] == URLName)
+            if(URLName.includes(currentListURLs[currentURL]))
                 return true;
     }
     return false;
+}
+
+function getSelectedBlackListeds()
+{
+    return JSON.parse(localStorage.getItem("savedSelectedBlackListsLocal"));
 }
 //######################################################################
