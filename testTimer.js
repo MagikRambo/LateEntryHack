@@ -23,7 +23,6 @@ function timeButtonClick()
      
 }
 
-// function getTimeRemainingHours(){    updateTimer();    var timeRemainingMilli = JSON.parse(localStorage.getItem("timeRemainingMilliLocal"));    return Math.floor(timeRemainingMilli / hourInMilli);}:function getTimeRemainingMinutes(){    updateTimer();    var timeRemainingMilli = JSON.parse(localStorage.getItem("timeRemainingMilliLocal"));    return Math.floor((timeRemainingMilli % hourInMilli) / minuteInMilli);}:function getTimeRemainingSeconds(){    updateTimer();    var timeRemainingMilli = JSON.parse(localStorage.getItem("timeRemainingMilliLocal"));    return Math.floor((timeRemainingMilli % minuteInMilli) / secondInMilli);}
 function updateTimer()
 {
     console.log("hello");
