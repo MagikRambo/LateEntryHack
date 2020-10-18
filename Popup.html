@@ -10,20 +10,28 @@
     <div class="btn-group btn-group-vertical">
         <button class="btn btn-danger w-100" data-toggle="collapse" data-target="#whitelistButtonGroup"><span style="color:whitesmoke">Whitelist</span></button>
         <div class="btn-group btn-group-vertical collapse" id="whitelistButtonGroup" aria-labelledby="btnGroupDrop1">
-            <form>
-                <div class="form-group">
-                    <input type="text" class="form-control" name="whitelistAdd">
-                </div>
-                <button type="submit" class="btn btn-danger" name="submitButton">Submit</button>
-            </form>
-            <ul id="dynamic-list">
+            <ul id="dynamic-whitelist">
     
     
             </ul>
+            <form>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="whitelistAdd" id="whitelistAdd">
+                </div>
+                <button type="submit" class="btn btn-danger" name="submitButton" id="whitelistSubmit">Submit</button>
+            </form>
         </div>
         <button class="btn btn-danger w-100" data-toggle="collapse" data-target="#blacklistButtonGroup"><span style="color:whitesmoke">Blacklist</span></button>
         <div class="btn-group btn-group-vertical collapse" id="blacklistButtonGroup" aria-labelledby="btnGroupDrop1">
-            <input type="text" class="form-control" id="blacklistAdd">
+            <ul id="dynamic-blacklist">
+    
+            </ul>
+            <form id="blacklistForm">
+                <div class="form-group">
+                    <input type="text" class="form-control" name="blacklistAdd" id="blacklistAdd">
+                </div>
+                <button type="submit" class="btn btn-danger" name="submitButton" id="blacklistSubmit">Submit</button>
+            </form>
         </div>
         <button class="btn btn-danger w-100" data-toggle="collapse" data-target="#timerButtonGroup"><span style="color:whitesmoke">Timer</span></button>
         <div class="btn-group btn-group-vertical collapse" id="timerButtonGroup" aria-labelledby="btnGroupDrop1">
