@@ -41,7 +41,7 @@ function addSelectedWhiteList(listName)
 function removeSelectedWhiteList(listName)
 {
     var savedSelectedWhiteLists = JSON.parse(localStorage.getItem("savedSelectedWhiteListsLocal"));
-    if(savedSelectedWhiteLists.hasOwnProperty(listName) && containsWhiteList(listName))
+    if(savedSelectedWhiteLists.hasOwnProperty(listName)) //&& containsWhiteList(listName))
     {
         savedSelectedWhiteLists.pop(listName);
     }
@@ -59,10 +59,18 @@ function isWhiteListedURL(URLName)
     {
         var currentListURLs = getWhiteListURLs(savedSelectedWhiteLists[currentList]);
         for(var currentURL = 0; currentURL < currentListURLs.length; currentURL++)
-            if(currentListURLs[currentURL] == URLName)
+            if(URLName.includes(currentListURLs[currentURL]))
                 return true;
     }
     return false;
+}
+
+/**
+ * Returns a list of the currently savedSelectedWhiteLists.
+ */
+function getSelectedWhiteLists()
+{
+    return JSON.parse(localStorage.getItem("savedSelectedWhiteListsLocal"));
 }
 //######################################################################
 
@@ -101,7 +109,7 @@ function addSelectedBlackList(listName)
 function removeSelectedBlackList(listName)
 {
     var savedSelectedBlackLists = JSON.parse(localStorage.getItem("savedSelectedBlackListsLocal"));
-    if(savedSelectedBlackLists.hasOwnProperty(listName) && containsBlackList(listName))
+    if(savedSelectedBlackLists.hasOwnProperty(listName)) //&& containsBlackList(listName))
     {
         savedSelectedBlackLists.pop(listName);
     }
@@ -119,9 +127,18 @@ function isBlackListedURL(URLName)
     {
         var currentListURLs = getBlackListURLs(savedSelectedBlackLists[currentList]);
         for(var currentURL = 0; currentURL < currentListURLs.length; currentURL++)
-            if(currentListURLs[currentURL] == URLName)
+            if(URLName.includes(currentListURLs[currentURL]))
                 return true;
     }
     return false;
+}
+
+
+/**
+ * Returns a list of the currently savedSelectedBlackLists.
+ */
+function getSelectedBlackLists()
+{
+    return JSON.parse(localStorage.getItem("savedSelectedBlackListsLocal"));
 }
 //######################################################################

@@ -1,20 +1,20 @@
 /**
- * @Author Hyrum Saunders
+ * @Author Hyrum Saunders and Jordan Jimenez
  */
 
-var currentList;
-
-document.write('<script src="ListsModel.js" ></script>');
-document.write('<script src="TimerModel.js" ></script>');
 document.write('<script src="SelectedListsModel.js" ></script>')
+document.write('<script src="TimerModel.js" ></script>')
 
-chrome.tabs.onUpdated.addListener(UrlListener)
 
-function UrlListener(tabId, changeInfo, tab){
- if (!(changeInfo.UrlListener in getWhiteListURLs(currentList))){
-     alert("This website is not inside your whitelists, if you'd like access, add it to your whitelist");
- }
- else if (changeInfo.UrlListener in getBlackListURLs(currentList)){
-     alert("This is a restricted site! Wait the timer to have access or give up!");
- }
+chrome.tabs.onUpdated.addListener(UrlListener);
+
+//code for when tab is selected.
+function UrlListener(tabId, changeInfo, tab)
+{
+    console.log(changeInfo.url)
+    
+    if(isWhiteListedURL(changeInfo.url))
+        chrome.tabs.update(tabId, {url: "BlockedSite.html"});  
+    else if(isBlackListedURL(changeInfo.url))
+        chrome.tabs.update(tabId, {url: "BlockedSite.html"});
 }
