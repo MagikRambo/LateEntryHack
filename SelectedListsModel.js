@@ -16,6 +16,12 @@ function initializeSelectedLists()
 }
 
 //######################## White List Functions ########################
+
+/**
+ * Adds specified listName to savedSelectedWhiteLists if listName is valid
+ * (in savedWhiteLists in ListsModel) and not already in savedSelectedWhiteLists.
+ * @param: listName: name to added.
+ */
 function addSelectedWhiteList(listName)
 {
     var savedSelectedWhiteLists = JSON.parse(localStorage.getItem("savedSelectedWhiteListsLocal"));
@@ -24,11 +30,15 @@ function addSelectedWhiteList(listName)
         savedSelectedWhiteLists.push(listName);
     }
     //else throw something
-    localStorage.setItem("savedSelectedWhiteListsLocal", JSON.stringify(savedSelectedWhiteLists));
-        
+    localStorage.setItem("savedSelectedWhiteListsLocal", JSON.stringify(savedSelectedWhiteLists));    
 }
 
-function removeSelectedWhiteList()
+/**
+ * removes specified listName from savedSelectedWhiteLists if listName is valid
+ * (in savedWhiteLists in ListsModel) and listName is in savedSelectedWhiteLists.
+ * @param: listName: name to remove,
+ */
+function removeSelectedWhiteList(listName)
 {
     var savedSelectedWhiteLists = JSON.parse(localStorage.getItem("savedSelectedWhiteListsLocal"));
     if(savedSelectedWhiteLists.hasOwnProperty(listName) && containsWhiteList(listName))
@@ -38,6 +48,10 @@ function removeSelectedWhiteList()
     localStorage.setItem("savedSelectedWhiteListsLocal", JSON.stringify(savedSelectedWhiteLists));
 }
 
+/**
+ * Checks if specified URLName matches any of the savedSelectedWhiteLists URLs.
+ * @param: URLName: website address.
+ */
 function isWhiteListedURL(URLName)
 {
     var savedSelectedWhiteLists = JSON.parse(localStorage.getItem("savedSelectedWhiteListsLocal"));
@@ -59,13 +73,13 @@ function isWhiteListedURL(URLName)
 
 
 
-
-
-
-
-
-
 //######################## black List functions ########################
+
+/**
+ * Adds specified listName to savedSelectedBlackLists if listName is valid
+ * (in savedBLackLists in ListsModel) and not already in savedSelectedBlackLists.
+ * @param: listName: name to added.
+ */
 function addSelectedBlackList(listName)
 {
     var savedSelectedBlackLists = JSON.parse(localStorage.getItem("savedSelectedBlackListsLocal"));
@@ -78,7 +92,13 @@ function addSelectedBlackList(listName)
         
 }
 
-function removeSelectedBlackList()
+
+/**
+ * removes specified listName from savedSelectedBlackLists if listName is valid
+ * (in savedBlackLists in ListsModel) and listName is in savedSelectedBlackLists.
+ * @param: listName: name to remove.
+ */
+function removeSelectedBlackList(listName)
 {
     var savedSelectedBlackLists = JSON.parse(localStorage.getItem("savedSelectedBlackListsLocal"));
     if(savedSelectedBlackLists.hasOwnProperty(listName) && containsBlackList(listName))
@@ -88,6 +108,10 @@ function removeSelectedBlackList()
     localStorage.setItem("savedSelectedBlackListsLocal", JSON.stringify(savedSelectedBlackLists));
 }
 
+/**
+ * Checks if specified URLName matches any of the savedSelectedBlackLists URLs.
+ * @param: URLName: website address.
+ */
 function isBlackListedURL(URLName)
 {
     var savedSelectedBlackLists = JSON.parse(localStorage.getItem("savedSelectedBlackListsLocal"));

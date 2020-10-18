@@ -1,5 +1,7 @@
 /**
- * @author: Hyrum Saunders and Jacob Pehringer and Jordan Jimenez
+ * @author: Jacob Pehringer
+ * @author: Jordan Jimenez
+ * @author: Hyrum Saunders
  */
 
 /**
