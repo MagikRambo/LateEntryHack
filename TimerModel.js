@@ -35,9 +35,9 @@ function setTimeRemaining(numOfHours, numOfMinutes, numOfSeconds)
  */
 function getTimeRemainingSeconds()
 {
-    updateTimer()
+    updateTimer();
     var timeRemainingMilli = JSON.parse(localStorage.getItem("timeRemainingMilliLocal"));
-    return (timeRemainingMilli % minuteInMilli) / secondInMilli;
+    return Math.floor((timeRemainingMilli % minuteInMilli) / secondInMilli);
 }
 
 /**
@@ -45,9 +45,9 @@ function getTimeRemainingSeconds()
  */
 function getTimeRemainingMinutes()
 {
-    updateTimer()
+    updateTimer();
     var timeRemainingMilli = JSON.parse(localStorage.getItem("timeRemainingMilliLocal"));
-    return (timeRemainingMilli % hourInMilli) / minuteInMilli;
+    return Math.floor((timeRemainingMilli % hourInMilli) / minuteInMilli);
 }
 
 /**
@@ -55,9 +55,9 @@ function getTimeRemainingMinutes()
  */
 function getTimeRemainingHours()
 {
-    updateTimer()
+    updateTimer();
     var timeRemainingMilli = JSON.parse(localStorage.getItem("timeRemainingMilliLocal"));
-    return timeRemainingMilli / hourInMilli;
+    return Math.floor(timeRemainingMilli / hourInMilli);
 }
 
 /**
@@ -69,9 +69,9 @@ function startTimer()
     //JSON.stringify(obj)
     //Timer not running, Update lastTimeMilli before running.
     var isRunning = JSON.parse(localStorage.getItem("isRunningLocal"));
-    var milliTime = new Date();
+    var currentTimeMilli = new Date().getTime();
     if(!isRunning)
-        localStorage.setItem("lastTimeMilliLocal", JSON.stringify(milliTime.getMilliseconds()));
+        localStorage.setItem("lastTimeMilliLocal", JSON.stringify(currentTimeMilli));
     //Set timer state to running.
     localStorage.setItem("isRunningLocal", JSON.stringify(true));
 }
@@ -85,7 +85,7 @@ function stopTimer()
     //Timer still running, update timer before pausing.
     var isRunning = JSON.parse(localStorage.getItem("isRunningLocal"));
     if(isRunning)
-        updateTimer()
+        updateTimer();
     //Set timer state to paused.
     localStorage.setItem("isRunningLocal", JSON.stringify(false));
 }
@@ -103,14 +103,21 @@ function updateTimer()
     {
         var timeRemainingMilli = JSON.parse(localStorage.getItem("timeRemainingMilliLocal"));
         var lastTimeMilli = JSON.parse(localStorage.getItem("lastTimeMilliLocal"));
-        var milliTime = new Date();
-        timeRemainingMilli -= (milliTime.getMilliseconds() - lastTimeMilli);
-
+        var currentTimeMilli = new Date().getTime();
+        //console.log(milliTime.getTime())
+        //console.log("-");
+        //console.log(lastTimeMilli);
+        timeRemainingMilli -= (currentTimeMilli - lastTimeMilli);
+        //console.log(timeRemainingMilli);
         if(timeRemainingMilli <= 0)
-            timeRemainingMilli = 0;
-
+            timeRemainingMilli = 1; //prevent div by zero error.
         localStorage.setItem("timeRemainingMilliLocal", JSON.stringify(timeRemainingMilli));
-
-        localStorage.setItem("lastTimeMilliLocal", JSON.stringify(milliTime.getMilliseconds()));
+        localStorage.setItem("lastTimeMilliLocal", JSON.stringify(currentTimeMilli));
     }
+}
+
+
+function consoleTimerResults()
+{
+    console.log(getTimeRemainingHours() + ":" + getTimeRemainingMinutes() + ":" + getTimeRemainingSeconds());
 }
