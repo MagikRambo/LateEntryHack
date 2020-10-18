@@ -1,5 +1,6 @@
 /**
  * @author Jordan Jimenez
+ * @author Mike Marambio
  */
 
 document.write('<script src="TimerModel.js" ></script>')
