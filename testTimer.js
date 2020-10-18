@@ -7,6 +7,7 @@ document.write('<script src="TimerModel.js" ></script>')
 // Grab Submit and GetTime Buttons
 document.getElementById('timerButton').addEventListener('click', updateTimer);
 document.getElementById('getTimeButton').addEventListener('click', updateTimer);
+document.getElementById('clearBtn').addEventListener('click', clearTime);
 
 var hours, minutes, seconds, input, interval, countdownE1;
 
@@ -59,4 +60,12 @@ function updateTimer()
         startTimer();
         interval = setInterval(displayTime, 50);
     }
+}
+
+/**
+ * ReInitializes timer so the time will clear
+ */
+function clearTime()
+{
+    initializeTimer();
 }
