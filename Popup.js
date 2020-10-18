@@ -2,33 +2,6 @@
 
 
 
-//     <div class="container">
-//     <div class="row">
-//       <div class="col-12">
-
-
-//         <h1>Dynamically Add & Remove Items From List Using JavaScript</h1>
-//         <hr>
-
-
-//         <div class="input-group">
-//           <input type="text" class="form-control" id="candidate" required>
-//           <div class="input-group-append">
-//             <button  id="btn btn-add" type="button">Add Item</button>
-//             <button  id="btn btn-remove" type="button">Remove Item</button>
-//           </div>
-//         </div>
-
-// <!-- ------------------------------------ -->
-//         <ul id="dynamic-list">
-
-
-//         </ul>
-
-//       </div>
-//     </div>
-//   </div>
-
 
 
 
